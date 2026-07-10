@@ -28,6 +28,11 @@
 
   --teal:#2FE0C5; --teal-ink:#06110F; --teal-dim:#123832; --teal-soft:rgba(47,224,197,.10);
   --coral:#FF7A63; --coral-dim:#3D1F19; --coral-soft:rgba(255,122,99,.10);
+  --violet:#8B7CF6; --violet-dim:#241F3D; --violet-soft:rgba(139,124,246,.10);
+
+  --grad-brand:linear-gradient(90deg, #2FE0C5 0%, #8B7CF6 55%, #FF7A63 100%);
+  --grad-btn:linear-gradient(135deg, #6D5EF0 0%, #8B7CF6 100%);
+  --grad-btn-hover:linear-gradient(135deg, #7C6DFA 0%, #9C8FFF 100%);
 
   --shadow-1:0 1px 2px rgba(0,0,0,.4);
   --shadow-2:0 8px 24px rgba(0,0,0,.35);
@@ -43,6 +48,11 @@
 
   --teal:#0C8F80; --teal-ink:#FFFFFF; --teal-dim:#CFEFE9; --teal-soft:rgba(12,143,128,.08);
   --coral:#D9432A; --coral-dim:#F7DCD5; --coral-soft:rgba(217,67,42,.08);
+  --violet:#6D5EF0; --violet-dim:#E6E2FD; --violet-soft:rgba(109,94,240,.08);
+
+  --grad-brand:linear-gradient(90deg, #0C8F80 0%, #6D5EF0 55%, #D9432A 100%);
+  --grad-btn:linear-gradient(135deg, #6D5EF0 0%, #8B7CF6 100%);
+  --grad-btn-hover:linear-gradient(135deg, #5C4CE0 0%, #7A6BF0 100%);
 
   --shadow-1:0 1px 2px rgba(20,20,15,.05);
   --shadow-2:0 8px 24px rgba(20,20,15,.06);
@@ -110,6 +120,18 @@ h1,h2,h3,h4,p{margin:0}
 .section-sub{color:var(--ink-soft);max-width:540px;font-size:16.5px;margin:0 0 44px}
 .hl-teal{color:var(--teal)}
 .hl-coral{color:var(--coral)}
+.hl-grad{
+  background:var(--grad-brand);-webkit-background-clip:text;background-clip:text;color:transparent;
+}
+
+.hero-typing{
+  font-family:var(--mono);font-size:17px;font-weight:600;color:var(--ink);
+  margin:0 0 20px;display:flex;align-items:center;gap:8px;min-height:26px;
+}
+.hero-typing-prompt{color:var(--teal)}
+.hero-typing-text{color:var(--violet)}
+.hero-typing-cursor{color:var(--ink-soft);animation:blinkCursor 1s step-end infinite}
+@keyframes blinkCursor{0%,49%{opacity:1}50%,100%{opacity:0}}
 
 section{position:relative}
 
@@ -120,7 +142,7 @@ section{position:relative}
 .mesh-blob{position:absolute;border-radius:50%;filter:blur(90px);opacity:var(--mesh-op);will-change:transform}
 .mesh-a{width:38vw;height:38vw;background:var(--teal);top:-12%;left:-10%;animation:float1 26s ease-in-out infinite}
 .mesh-b{width:34vw;height:34vw;background:var(--coral);top:35%;right:-14%;animation:float2 30s ease-in-out infinite}
-.mesh-c{width:26vw;height:26vw;background:var(--teal);bottom:-12%;left:30%;animation:float3 34s ease-in-out infinite}
+.mesh-c{width:26vw;height:26vw;background:var(--violet);bottom:-12%;left:30%;animation:float3 34s ease-in-out infinite}
 @keyframes float1{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(5vw,7vh) scale(1.12)}}
 @keyframes float2{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-7vw,5vh) scale(1.08)}}
 @keyframes float3{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(4vw,-5vh) scale(1.15)}}
@@ -150,11 +172,11 @@ section{position:relative}
 .site-nav a:not(.nav-cta):hover::after{width:100%}
 .site-nav a:not(.nav-cta):hover{color:var(--ink)}
 .nav-cta{
-  background:var(--teal);color:var(--teal-ink) !important;padding:9px 18px;
+  background:var(--grad-btn);color:#fff !important;padding:9px 18px;
   border-radius:var(--r-sm);font-weight:700;flex-shrink:0;white-space:nowrap;
-  transition:transform .2s var(--ease),box-shadow .2s var(--ease);
+  transition:transform .2s var(--ease),box-shadow .2s var(--ease),background .2s var(--ease);
 }
-.nav-cta:hover{transform:translateY(-1px);box-shadow:var(--glow-teal)}
+.nav-cta:hover{transform:translateY(-1px);background:var(--grad-btn-hover);box-shadow:0 6px 20px rgba(139,124,246,.35)}
 
 .header-actions{display:flex;align-items:center;gap:8px}
 .theme-toggle{
@@ -209,8 +231,8 @@ section{position:relative}
 }
 .btn:hover{transform:translateY(-2px)}
 .btn:active{transform:translateY(0)}
-.btn-primary{background:var(--teal);color:var(--teal-ink);box-shadow:var(--shadow-2)}
-.btn-primary:hover{box-shadow:var(--glow-teal),var(--shadow-2)}
+.btn-primary{background:var(--grad-btn);color:#fff;box-shadow:var(--shadow-2)}
+.btn-primary:hover{background:var(--grad-btn-hover);box-shadow:0 8px 28px rgba(139,124,246,.35),var(--shadow-2)}
 .btn-ghost{background:transparent;border-color:var(--line);color:var(--ink)}
 .btn-ghost:hover{border-color:var(--coral);color:var(--coral)}
 .btn-block{width:100%}
@@ -292,8 +314,8 @@ section{position:relative}
 .phone-ui-accent{
   width:34px;height:34px;border-radius:50%;margin:8px auto 4px;
   display:flex;align-items:center;justify-content:center;
-  font-family:var(--display);font-weight:700;font-size:12px;
 }
+.phone-ui-accent svg{width:17px;height:17px}
 .phone-ui-accent.teal{background:var(--teal);color:var(--teal-ink)}
 .phone-ui-accent.coral{background:var(--coral);color:#fff}
 
@@ -515,9 +537,14 @@ body.modal-locked{overflow:hidden}
   <section class="hero wrap" aria-label="Introduction">
     <p class="hero-kicker reveal">Open to freelance work and full-time roles</p>
 
+    <p class="hero-typing reveal" aria-live="polite">
+      <span class="hero-typing-prompt">&gt;</span>
+      <span class="hero-typing-text" id="heroTypingText"></span><span class="hero-typing-cursor">|</span>
+    </p>
+
     <h1 class="hero-title reveal">
       <span class="line">I build production-ready</span>
-      <span class="line"><span class="hl-teal">Android applications</span></span>
+      <span class="line"><span class="hl-grad">Android applications</span></span>
       <span class="line">and modern <span class="hl-coral">full-stack software.</span></span>
     </h1>
 
@@ -607,7 +634,9 @@ body.modal-locked{overflow:hidden}
               <div class="phone-screen phone-screen-vc">
                 <div class="phone-ui-bar w60"></div>
                 <div class="phone-ui-bar w40"></div>
-                <div class="phone-ui-accent teal">AI</div>
+                <div class="phone-ui-accent teal" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v4M12 17v4M5 5l2.5 2.5M16.5 16.5L19 19M3 12h4M17 12h4M5 19l2.5-2.5M16.5 7.5L19 5"/></svg>
+                </div>
                 <div class="phone-ui-block"></div>
                 <div class="phone-ui-bar w80"></div>
               </div>
@@ -641,7 +670,9 @@ body.modal-locked{overflow:hidden}
               <div class="phone-notch"></div>
               <div class="phone-screen phone-screen-pm">
                 <div class="phone-ui-bar w40"></div>
-                <div class="phone-ui-accent coral">%</div>
+                <div class="phone-ui-accent coral" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="16" height="10" rx="2"/><line x1="22" y1="10" x2="22" y2="14"/><line x1="6" y1="10" x2="6" y2="14"/></svg>
+                </div>
                 <div class="phone-ui-block"></div>
                 <div class="phone-ui-bar w60"></div>
                 <div class="phone-ui-bar w80"></div>
@@ -677,7 +708,9 @@ body.modal-locked{overflow:hidden}
               <div class="phone-screen phone-screen-sm">
                 <div class="phone-ui-bar w80"></div>
                 <div class="phone-ui-block"></div>
-                <div class="phone-ui-accent teal">OCR</div>
+                <div class="phone-ui-accent teal" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7V5a2 2 0 0 1 2-2h2M17 3h2a2 2 0 0 1 2 2v2M21 17v2a2 2 0 0 1-2 2h-2M7 21H5a2 2 0 0 1-2-2v-2"/><line x1="7" y1="12" x2="17" y2="12"/></svg>
+                </div>
                 <div class="phone-ui-bar w60"></div>
               </div>
             </div>
@@ -711,7 +744,9 @@ body.modal-locked{overflow:hidden}
               <div class="phone-notch"></div>
               <div class="phone-screen phone-screen-sw">
                 <div class="phone-ui-bar w60"></div>
-                <div class="phone-ui-accent teal">$</div>
+                <div class="phone-ui-accent teal" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                </div>
                 <div class="phone-ui-block"></div>
                 <div class="phone-ui-bar w40"></div>
                 <div class="phone-ui-bar w80"></div>
@@ -1086,6 +1121,43 @@ body.modal-locked{overflow:hidden}
 document.addEventListener('DOMContentLoaded', () => {
 
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // ---- Hero typing effect ----
+  const typingEl = document.getElementById('heroTypingText');
+  if (typingEl) {
+    const roles = ['Android Developer', 'Full-Stack Developer', 'Content Creator'];
+    if (prefersReducedMotion) {
+      typingEl.textContent = roles[0];
+    } else {
+      let roleIndex = 0, charIndex = 0, deleting = false;
+      const TYPE_SPEED = 65, DELETE_SPEED = 35, HOLD_TIME = 1400, GAP_TIME = 400;
+
+      function tick() {
+        const current = roles[roleIndex];
+        if (!deleting) {
+          charIndex++;
+          typingEl.textContent = current.slice(0, charIndex);
+          if (charIndex === current.length) {
+            deleting = true;
+            setTimeout(tick, HOLD_TIME);
+            return;
+          }
+          setTimeout(tick, TYPE_SPEED);
+        } else {
+          charIndex--;
+          typingEl.textContent = current.slice(0, charIndex);
+          if (charIndex === 0) {
+            deleting = false;
+            roleIndex = (roleIndex + 1) % roles.length;
+            setTimeout(tick, GAP_TIME);
+            return;
+          }
+          setTimeout(tick, DELETE_SPEED);
+        }
+      }
+      tick();
+    }
+  }
 
   // ---- Mobile nav ----
   const navToggle = document.getElementById('navToggle');
