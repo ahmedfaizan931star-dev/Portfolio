@@ -282,6 +282,7 @@ section{position:relative}
 .phone-screen-vc{background:linear-gradient(160deg, var(--teal-dim) 0%, var(--surface-2) 70%)}
 .phone-screen-pm{background:linear-gradient(160deg, var(--coral-dim) 0%, var(--surface-2) 70%)}
 .phone-screen-sm{background:linear-gradient(160deg, var(--teal-dim) 0%, var(--surface-2) 70%)}
+.phone-screen-sw{background:linear-gradient(160deg, var(--coral-dim) 0%, var(--surface-2) 70%)}
 
 .phone-ui-bar{height:6px;border-radius:3px;background:rgba(255,255,255,.08)}
 .phone-ui-bar.w60{width:60%}
@@ -426,6 +427,20 @@ section{position:relative}
 .modal-link:hover{text-decoration:underline}
 body.modal-locked{overflow:hidden}
 
+.psr-block{margin:0 0 20px}
+.psr-label{
+  display:inline-flex;align-items:center;gap:7px;font-family:var(--mono);font-size:11px;font-weight:700;
+  letter-spacing:.06em;text-transform:uppercase;margin:0 0 8px;
+}
+.psr-label::before{content:'';width:7px;height:7px;border-radius:50%}
+.psr-problem .psr-label{color:var(--coral)}
+.psr-problem .psr-label::before{background:var(--coral)}
+.psr-solution .psr-label{color:var(--teal)}
+.psr-solution .psr-label::before{background:var(--teal)}
+.psr-result .psr-label{color:var(--ink)}
+.psr-result .psr-label::before{background:var(--ink-soft)}
+.psr-block p{margin:0;color:var(--ink-soft);font-size:14.5px;line-height:1.6}
+
 /* ==========================================================
    SCROLL REVEAL
    ========================================================== */
@@ -478,7 +493,6 @@ body.modal-locked{overflow:hidden}
       <a href="#about">About</a>
       <a href="#apps">Apps</a>
       <a href="#projects">Projects</a>
-      <a href="#testimonials">Testimonials</a>
       <a href="#contact" class="nav-cta">Hire me</a>
     </nav>
 
@@ -508,9 +522,9 @@ body.modal-locked{overflow:hidden}
     </h1>
 
     <p class="hero-sub reveal">
-      Native Android development in Kotlin and Jetpack Compose, backed by a
-      full-stack range across React, Node.js and Python — from Play Store
-      apps to client web platforms.
+      Native Android development in Kotlin and Jetpack Compose, with a
+      full-stack range across React, Node.js and Python — shipping
+      everything from Play Store apps to client web platforms.
     </p>
 
     <div class="hero-actions reveal">
@@ -518,22 +532,6 @@ body.modal-locked{overflow:hidden}
       <a href="#contact" class="btn btn-ghost">Start a project</a>
     </div>
 
-    <div class="hero-rule reveal">
-      <div class="hero-stats">
-        <div class="stat">
-          <span class="stat-num" data-count="3">0</span>
-          <span class="stat-label">Android apps shipped end to end</span>
-        </div>
-        <div class="stat">
-          <span class="stat-num" data-count="2">0</span>
-          <span class="stat-label">years building production software</span>
-        </div>
-        <div class="stat">
-          <span class="stat-num" data-count="3">0</span>
-          <span class="stat-label">core stacks — Kotlin, JS, Python</span>
-        </div>
-      </div>
-    </div>
   </section>
 
   <!-- ============ ABOUT ============ -->
@@ -560,20 +558,34 @@ body.modal-locked{overflow:hidden}
           clean architecture, and things that don't break the moment a real
           user touches them — that's the standard I hold my own work to.
         </p>
+        <p class="about-text">
+          Every app on this page — architecture, CI/CD pipeline, release
+          builds, the works — was built entirely on a Samsung Galaxy A06.
+          No laptop, no desktop. If the workflow works under that
+          constraint, it works anywhere.
+        </p>
       </div>
 
       <div class="about-side reveal">
         <div class="side-card">
-          <h3>Core stack</h3>
+          <h3>Android</h3>
           <ul class="tag-row">
-            <li>Kotlin</li><li>Jetpack Compose</li><li>React</li>
-            <li>Node.js</li><li>Python</li><li>Room / SQL</li>
+            <li>Kotlin</li><li>Jetpack Compose</li><li>Hilt</li>
+            <li>Room</li><li>Coroutines / Flow</li><li>CameraX</li><li>ML Kit</li>
+          </ul>
+        </div>
+        <div class="side-card">
+          <h3>Full-stack &amp; tooling</h3>
+          <ul class="tag-row">
+            <li>React</li><li>TypeScript</li><li>Node.js</li>
+            <li>Python</li><li>GitHub Actions CI/CD</li><li>Gemini API</li>
           </ul>
         </div>
         <div class="side-card">
           <h3>Currently</h3>
-          <p>Shipping Android utility apps, taking on freelance web
-            projects, and creating developer content for beginners.</p>
+          <p>Just shipped SpendWise, an AI-powered expense and subscription
+            tracker. Taking on freelance Android and web projects, and
+            creating developer content for beginners.</p>
         </div>
       </div>
     </div>
@@ -673,16 +685,53 @@ body.modal-locked{overflow:hidden}
               <h3>ScanMate AI Pro</h3>
               <p class="app-role">Document scanning · OCR</p>
               <p class="app-desc">
-                Turns a phone camera into a document scanner — edge
-                detection, perspective correction, and on-device OCR built
-                on a reactive Room/Flow architecture.
+                A full document scanner with encrypted vault storage —
+                auto-deskew, on-device OCR with paragraph reconstruction,
+                password-protected PDFs, and biometric-locked access,
+                built on a reactive Room/Flow architecture.
               </p>
               <div class="app-metrics">
-                <div class="app-metric"><span class="app-metric-val">6.4/10</span><span class="app-metric-label">Principal review</span></div>
-                <div class="app-metric"><span class="app-metric-val">CameraX</span><span class="app-metric-label">+ ML Kit</span></div>
+                <div class="app-metric"><span class="app-metric-val">10/10</span><span class="app-metric-label">Production-ready</span></div>
+                <div class="app-metric"><span class="app-metric-val">15</span><span class="app-metric-label">Revision rounds</span></div>
+                <div class="app-metric"><span class="app-metric-val">AES-128</span><span class="app-metric-label">PDF encryption</span></div>
               </div>
               <ul class="tag-row">
-                <li>CameraX</li><li>ML Kit</li><li>Room</li><li>Flow</li>
+                <li>CameraX</li><li>ML Kit</li><li>Room</li><li>Flow</li><li>Biometrics</li>
+              </ul>
+            </div>
+            <span class="app-expand" aria-hidden="true">Case study
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </span>
+          </div>
+        </article>
+
+        <article class="app-card reveal" data-modal="modal-spendwise" tabindex="0" role="button" aria-haspopup="dialog" aria-label="SpendWise — view case study">
+          <div class="app-card-grid">
+            <div class="phone-mockup" aria-hidden="true">
+              <div class="phone-notch"></div>
+              <div class="phone-screen phone-screen-sw">
+                <div class="phone-ui-bar w60"></div>
+                <div class="phone-ui-accent teal">$</div>
+                <div class="phone-ui-block"></div>
+                <div class="phone-ui-bar w40"></div>
+                <div class="phone-ui-bar w80"></div>
+              </div>
+            </div>
+            <div class="app-body">
+              <h3>SpendWise</h3>
+              <p class="app-role">AI-powered expense &amp; subscription tracker</p>
+              <p class="app-desc">
+                Tracks spending and recurring subscriptions with receipt OCR
+                and AI-driven categorization, built fully offline-first with
+                local-only storage.
+              </p>
+              <div class="app-metrics">
+                <div class="app-metric"><span class="app-metric-val">Gemini</span><span class="app-metric-label">API integration</span></div>
+                <div class="app-metric"><span class="app-metric-val">OCR</span><span class="app-metric-label">Receipt scanning</span></div>
+                <div class="app-metric"><span class="app-metric-val">Offline</span><span class="app-metric-label">Room-only storage</span></div>
+              </div>
+              <ul class="tag-row">
+                <li>Kotlin</li><li>Jetpack Compose</li><li>Room</li><li>Gemini API</li><li>ML Kit</li>
               </ul>
             </div>
             <span class="app-expand" aria-hidden="true">Case study
@@ -738,44 +787,6 @@ body.modal-locked{overflow:hidden}
     </div>
   </section>
 
-  <!-- ============ TESTIMONIALS ============ -->
-  <section class="testimonials" id="testimonials" aria-labelledby="testimonials-title">
-    <div class="wrap">
-      <p class="eyebrow-label">Testimonials</p>
-      <h2 class="section-title" id="testimonials-title">What people say after working with me.</h2>
-      <p class="section-sub" style="color:var(--coral); font-family:var(--mono); font-size:13px;">
-        Placeholder content — replace with real quotes once you have them, or remove any card you don't need.
-      </p>
-
-      <div class="testimonial-grid">
-        <article class="testimonial-card reveal">
-          <span class="quote-mark" aria-hidden="true">"</span>
-          <p class="testimonial-quote">Placeholder — swap for what an actual client said, ideally something specific about the result you delivered.</p>
-          <div class="testimonial-author">
-            <span class="author-name">Client Name</span>
-            <span class="author-role">Role · via Fiverr</span>
-          </div>
-        </article>
-        <article class="testimonial-card reveal">
-          <span class="quote-mark" aria-hidden="true">"</span>
-          <p class="testimonial-quote">Placeholder — this could be a mentee talking about what they learned or built with your guidance.</p>
-          <div class="testimonial-author">
-            <span class="author-name">Mentee Name</span>
-            <span class="author-role">Developer community member</span>
-          </div>
-        </article>
-        <article class="testimonial-card reveal">
-          <span class="quote-mark" aria-hidden="true">"</span>
-          <p class="testimonial-quote">Placeholder — a third example, maybe about reliability, communication, or turnaround time.</p>
-          <div class="testimonial-author">
-            <span class="author-name">Client Name</span>
-            <span class="author-role">Role · Company</span>
-          </div>
-        </article>
-      </div>
-    </div>
-  </section>
-
   <!-- ============ CONTACT — Fiverr-first ============ -->
   <section class="contact" id="contact" aria-labelledby="contact-title">
     <div class="wrap">
@@ -792,8 +803,18 @@ body.modal-locked{overflow:hidden}
           <h3>Hire me on Fiverr</h3>
           <p>The quickest way to scope and start a project — Android apps, web platforms, or custom software.</p>
         </div>
-        <a href="#" class="btn btn-primary" target="_blank" rel="noopener">
+        <a href="https://www.fiverr.com/users/fiyaz_dev/" class="btn btn-primary" target="_blank" rel="noopener">
           View Fiverr profile
+        </a>
+      </div>
+
+      <div class="contact-primary reveal">
+        <div class="contact-primary-text">
+          <h3>Resume</h3>
+          <p>A one-page summary of experience, projects, and skills.</p>
+        </div>
+        <a href="Faizan_Resume.pdf" class="btn btn-ghost" target="_blank" rel="noopener">
+          Download resume
         </a>
       </div>
 
@@ -836,20 +857,27 @@ body.modal-locked{overflow:hidden}
     <h3 id="modal-vaultclean-title">VaultClean AI</h3>
     <p class="modal-tagline">Storage-cleaning utility with AI suggestions</p>
     <div class="modal-body">
-      <p>VaultClean AI scans device storage and uses AI-driven heuristics to
-        suggest what's safe to clear — duplicate files, stale caches, large
-        unused media — without touching anything the user actually needs.</p>
-      <p>The build went through a full production audit: 49 Kotlin files
-        across roughly 7,200 lines, with 13 prioritized fixes covering the
-        billing system, main-thread I/O across 6 ViewModels, interstitial ad
-        wiring, and navigation flow for AI suggestion cards.</p>
-      <h4>What it took</h4>
-      <ul class="detail-list">
-        <li>Complete in-app billing system for premium features</li>
-        <li>Moved blocking I/O off the main thread across the ViewModel layer</li>
-        <li>Interstitial ads integrated without hurting responsiveness</li>
-        <li>Fixed navigation gaps in the AI suggestion flow</li>
-      </ul>
+      <div class="psr-block psr-problem">
+        <p class="psr-label">Problem</p>
+        <p>Phones fill up with duplicate files, stale caches, and forgotten
+          media, but most cleaning apps either delete too aggressively or
+          make users manually sort through everything themselves.</p>
+      </div>
+      <div class="psr-block psr-solution">
+        <p class="psr-label">Solution</p>
+        <p>Built an AI-assisted scanner that flags what's genuinely safe to
+          clear, backed by a full billing system for premium features. Ran
+          a full production audit across 49 Kotlin files (~7,200 lines),
+          moving blocking I/O off the main thread across 6 ViewModels and
+          fixing navigation gaps in the AI suggestion flow.</p>
+      </div>
+      <div class="psr-block psr-result">
+        <p class="psr-label">Result</p>
+        <p>A production-hardened cleaning utility with 13 prioritized fixes
+          shipped, interstitial ads integrated without hurting app
+          responsiveness, and a suggestion flow that holds up under real
+          usage rather than just demo conditions.</p>
+      </div>
       <ul class="tag-row">
         <li>Kotlin</li><li>Jetpack Compose</li><li>Room</li><li>AdMob</li><li>Coroutines</li>
       </ul>
@@ -862,20 +890,27 @@ body.modal-locked{overflow:hidden}
     <h3 id="modal-powermate-title">PowerMate AI</h3>
     <p class="modal-tagline">Battery &amp; charging diagnostics app</p>
     <div class="modal-body">
-      <p>PowerMate AI scores a device's charging health — analyzing charge
-        cycles, speed, and battery behavior — through a clean, data-driven
-        dashboard.</p>
-      <p>Developed across multiple sessions: CI build failures fixed via
-        GitHub Actions, scoring formula bugs corrected, CSV export wired
-        through FileProvider, and a full UI polish pass covering
-        typography, contrast, and navigation structure.</p>
-      <h4>What it took</h4>
-      <ul class="detail-list">
-        <li>GitHub Actions CI/CD to catch build failures early</li>
-        <li>Corrected the core battery health scoring formula</li>
-        <li>CSV export via FileProvider for data portability</li>
-        <li>Full UI/UX polish pass — typography, contrast, navigation</li>
-      </ul>
+      <div class="psr-block psr-problem">
+        <p class="psr-label">Problem</p>
+        <p>Most battery apps show raw percentage and little else, leaving
+          users with no real sense of whether their charging habits are
+          actually damaging long-term battery health.</p>
+      </div>
+      <div class="psr-block psr-solution">
+        <p class="psr-label">Solution</p>
+        <p>Built a scoring system that analyzes charge cycles, speed, and
+          behavior into a single health score on a clean, data-driven
+          dashboard. Fixed CI build failures via GitHub Actions, corrected
+          the core scoring formula, and wired CSV export through
+          FileProvider for data portability.</p>
+      </div>
+      <div class="psr-block psr-result">
+        <p class="psr-label">Result</p>
+        <p>A reliable diagnostics app with a working CI/CD pipeline
+          catching build failures before release, plus a full UI/UX polish
+          pass across typography, contrast, and navigation — ready to list
+          for sale as production source code.</p>
+      </div>
       <ul class="tag-row">
         <li>Kotlin</li><li>Jetpack Compose</li><li>GitHub Actions</li><li>FileProvider</li>
       </ul>
@@ -892,21 +927,62 @@ body.modal-locked{overflow:hidden}
     <h3 id="modal-scanmate-title">ScanMate AI Pro</h3>
     <p class="modal-tagline">Document scanning with OCR</p>
     <div class="modal-body">
-      <p>ScanMate AI Pro turns a phone camera into a document scanner —
-        detecting edges, correcting perspective, and running OCR to make
-        scanned text searchable and copyable.</p>
-      <p>Built on CameraX for camera handling and ML Kit for on-device OCR,
-        with a Room/Flow-based architecture so scans stay available
-        offline and update reactively across the app.</p>
-      <h4>What it took</h4>
-      <ul class="detail-list">
-        <li>CameraX integration with real-time edge detection</li>
-        <li>ML Kit OCR pipeline for on-device text recognition</li>
-        <li>Perspective correction for skewed document photos</li>
-        <li>Room + Flow architecture for reactive local storage</li>
-      </ul>
+      <div class="psr-block psr-problem">
+        <p class="psr-label">Problem</p>
+        <p>Paper documents need to be digitized, searchable, and sometimes
+          protected — but most scanner apps stop at "take a photo" and
+          leave organization, security, and text extraction to the user.</p>
+      </div>
+      <div class="psr-block psr-solution">
+        <p class="psr-label">Solution</p>
+        <p>Built a full document management system on CameraX and ML Kit:
+          real-time edge detection with auto-deskew, on-device OCR with
+          paragraph reconstruction, full-text search across every scan,
+          AES-128 password-protected PDF export, and a biometric-locked
+          vault for sensitive documents — all on a reactive Room/Flow
+          architecture that works fully offline.</p>
+      </div>
+      <div class="psr-block psr-result">
+        <p class="psr-label">Result</p>
+        <p>Taken through 15 rounds of iterative production hardening, from
+          a 6.4/10 initial review to a 10/10 production-ready build — now
+          also handling business card scanning with direct vCard
+          extraction and automated document quality scoring on capture.</p>
+      </div>
       <ul class="tag-row">
-        <li>CameraX</li><li>ML Kit</li><li>Room</li><li>Flow</li>
+        <li>CameraX</li><li>ML Kit</li><li>Room</li><li>Flow</li><li>iTextG</li><li>Biometrics</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="modal" id="modal-spendwise" role="dialog" aria-modal="true" aria-labelledby="modal-spendwise-title">
+    <button class="modal-close" aria-label="Close dialog">&times;</button>
+    <div class="modal-icon">SW</div>
+    <h3 id="modal-spendwise-title">SpendWise</h3>
+    <p class="modal-tagline">AI-powered expense &amp; subscription tracker</p>
+    <div class="modal-body">
+      <div class="psr-block psr-problem">
+        <p class="psr-label">Problem</p>
+        <p>Recurring subscriptions and everyday spending quietly add up,
+          and manually categorizing every purchase or typing in receipt
+          details is tedious enough that most people just stop tracking.</p>
+      </div>
+      <div class="psr-block psr-solution">
+        <p class="psr-label">Solution</p>
+        <p>Built an offline-first tracker where the Gemini API handles
+          smart expense categorization and ML Kit OCR (carried over from
+          ScanMate) reads receipts automatically, pulling amounts and
+          merchant details without manual entry. All data stays local via
+          Room — no cloud dependency.</p>
+      </div>
+      <div class="psr-block psr-result">
+        <p class="psr-label">Result</p>
+        <p>A fully offline expense and subscription tracker with automatic
+          recurring-charge detection, shipped with a GitHub Actions CI/CD
+          pipeline producing both debug and release builds.</p>
+      </div>
+      <ul class="tag-row">
+        <li>Kotlin</li><li>Jetpack Compose</li><li>Room</li><li>Gemini API</li><li>ML Kit</li><li>GitHub Actions</li>
       </ul>
     </div>
   </div>
@@ -917,14 +993,26 @@ body.modal-locked{overflow:hidden}
     <h3 id="modal-signal-title">Signal</h3>
     <p class="modal-tagline">Single-file Gemini-powered chat app</p>
     <div class="modal-body">
-      <p>Signal is a self-contained chat interface for Google's Gemini API,
-        built as a single HTML/CSS/JS file — no framework, no build step,
-        easy to host anywhere.</p>
-      <p>Includes markdown rendering via marked.js, syntax highlighting via
-        highlight.js, sanitized output through DOMPurify, Google Search
-        grounding, temperature controls, and per-message actions like edit,
-        regenerate, delete and copy — plus chat pinning, sidebar search,
-        and rename.</p>
+      <div class="psr-block psr-problem">
+        <p class="psr-label">Problem</p>
+        <p>Most AI chat interfaces require a framework, a build step, and
+          hosting infrastructure — overkill for a lightweight, personal
+          Gemini API client that just needs to work anywhere.</p>
+      </div>
+      <div class="psr-block psr-solution">
+        <p class="psr-label">Solution</p>
+        <p>Built Signal as a single self-contained HTML/CSS/JS file — no
+          framework, no build step. Added markdown rendering via
+          marked.js, syntax highlighting via highlight.js, sanitized
+          output through DOMPurify, Google Search grounding, and
+          temperature controls.</p>
+      </div>
+      <div class="psr-block psr-result">
+        <p class="psr-label">Result</p>
+        <p>A fully-featured chat client with per-message edit, regenerate,
+          delete and copy actions, plus chat pinning, sidebar search, and
+          rename — deployable by dropping one file anywhere.</p>
+      </div>
       <ul class="tag-row">
         <li>JavaScript</li><li>Gemini API</li><li>marked.js</li><li>highlight.js</li><li>DOMPurify</li>
       </ul>
@@ -937,10 +1025,25 @@ body.modal-locked{overflow:hidden}
     <h3 id="modal-directory-title">Chakwal Business Directory</h3>
     <p class="modal-tagline">Multi-business directory platform</p>
     <div class="modal-body">
-      <p>A directory site listing multiple local businesses in Chakwal,
-        Pakistan, originally built as a single React app and currently
-        being converted into 10 separate standalone sites — one per
-        business — for independent hosting and easier client handoff.</p>
+      <div class="psr-block psr-problem">
+        <p class="psr-label">Problem</p>
+        <p>Local businesses in Chakwal, Pakistan have little to no online
+          presence, and a single shared directory site makes it hard for
+          any one business to hand off, brand, or fully own their page.</p>
+      </div>
+      <div class="psr-block psr-solution">
+        <p class="psr-label">Solution</p>
+        <p>Built a multi-business directory as a single React app first,
+          then restructured it to split into 10 separate standalone sites
+          — one per business — so each can be hosted, branded, and handed
+          off independently.</p>
+      </div>
+      <div class="psr-block psr-result">
+        <p class="psr-label">Result</p>
+        <p>Ten deployable, client-ready business websites built from one
+          codebase, positioned to be pitched directly to local business
+          owners.</p>
+      </div>
       <ul class="tag-row">
         <li>React</li><li>Vite</li><li>TypeScript</li>
       </ul>
@@ -953,10 +1056,24 @@ body.modal-locked{overflow:hidden}
     <h3 id="modal-candlestick-title">Candlestick Trading Tool</h3>
     <p class="modal-tagline">Educational HTML tool</p>
     <div class="modal-body">
-      <p>A self-contained educational tool explaining candlestick chart
-        patterns for trading — built for a family member exploring trading
-        on Binance, with visual examples of common patterns and what they
-        typically signal.</p>
+      <div class="psr-block psr-problem">
+        <p class="psr-label">Problem</p>
+        <p>A family member exploring trading on Binance needed to learn
+          candlestick chart patterns, but most explanations online are
+          either too technical or too scattered to actually learn from.</p>
+      </div>
+      <div class="psr-block psr-solution">
+        <p class="psr-label">Solution</p>
+        <p>Built a self-contained educational tool covering common
+          candlestick patterns, with visual examples of each one and
+          plain-language explanations of what they typically signal.</p>
+      </div>
+      <div class="psr-block psr-result">
+        <p class="psr-label">Result</p>
+        <p>A focused, easy-to-follow reference that turned an abstract
+          topic into something a beginner could actually use while
+          reading live charts.</p>
+      </div>
       <ul class="tag-row">
         <li>HTML</li><li>CSS</li><li>JavaScript</li>
       </ul>
