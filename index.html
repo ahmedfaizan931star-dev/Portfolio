@@ -323,6 +323,37 @@ section{position:relative}
 .app-role{font-size:13.5px;color:var(--teal);font-weight:600;margin:0 0 14px;font-family:var(--mono)}
 .app-desc{color:var(--ink-soft);max-width:540px;margin:0 0 18px;font-size:15.5px}
 
+.app-status-row{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 12px}
+.app-status{
+  display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:11px;
+  font-weight:700;letter-spacing:.04em;text-transform:uppercase;padding:5px 10px;border-radius:99px;
+}
+.app-status::before{content:'';width:6px;height:6px;border-radius:50%}
+.app-status-live{background:var(--teal-soft);color:var(--teal)}
+.app-status-live::before{background:var(--teal)}
+.app-status-soon{background:var(--violet-soft);color:var(--violet)}
+.app-status-soon::before{background:var(--violet)}
+
+.screenshot-strip{
+  display:flex;gap:12px;overflow-x:auto;padding:4px 0 14px;margin:0 0 4px;
+  scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch;
+}
+.screenshot-strip::-webkit-scrollbar{height:6px}
+.screenshot-strip::-webkit-scrollbar-thumb{background:var(--line);border-radius:99px}
+.screenshot-strip img{
+  height:340px;width:auto;border-radius:16px;flex-shrink:0;scroll-snap-align:start;
+  border:1px solid var(--line);box-shadow:var(--shadow-2);background:var(--surface-2);
+}
+.screenshot-placeholder{
+  height:340px;min-width:170px;border-radius:16px;flex-shrink:0;scroll-snap-align:start;
+  border:1px dashed var(--line);background:var(--surface-2);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;
+  color:var(--ink-dim);font-family:var(--mono);font-size:11px;text-align:center;padding:0 16px;
+}
+.screenshot-placeholder svg{width:26px;height:26px;opacity:.5}
+
+.modal-link-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:8px}
+
 .app-metrics{display:flex;gap:20px;margin-bottom:16px;flex-wrap:wrap}
 .app-metric{display:flex;flex-direction:column;gap:2px}
 .app-metric-val{font-family:var(--display);font-weight:700;font-size:18px;color:var(--ink)}
@@ -644,6 +675,9 @@ body.modal-locked{overflow:hidden}
             <div class="app-body">
               <h3>VaultClean AI</h3>
               <p class="app-role">Storage-cleaning utility · AI-assisted</p>
+              <div class="app-status-row">
+                <span class="app-status app-status-soon">Coming soon on Play Store</span>
+              </div>
               <p class="app-desc">
                 Scans device storage and uses AI-driven heuristics to
                 suggest what's safe to clear, backed by a full billing
@@ -681,15 +715,19 @@ body.modal-locked{overflow:hidden}
             <div class="app-body">
               <h3>PowerMate AI</h3>
               <p class="app-role">Battery &amp; charging diagnostics</p>
+              <div class="app-status-row">
+                <span class="app-status app-status-live">Screenshots available</span>
+              </div>
               <p class="app-desc">
-                Scores device charging health from cycle data and behavior,
-                shipped with CI/CD via GitHub Actions and a full UI
-                polish pass.
+                A private battery command center — live charging monitor,
+                charger/cable/stability scoring, care and health scores,
+                always-on-display mode, and smart charging alerts, all
+                estimated fully on-device.
               </p>
               <div class="app-metrics">
-                <div class="app-metric"><span class="app-metric-val">CI/CD</span><span class="app-metric-label">GitHub Actions</span></div>
-                <div class="app-metric"><span class="app-metric-val">CSV</span><span class="app-metric-label">Data export</span></div>
-                <div class="app-metric"><span class="app-metric-val">Listed</span><span class="app-metric-label">For sale</span></div>
+                <div class="app-metric"><span class="app-metric-val">Live</span><span class="app-metric-label">Per-second monitor</span></div>
+                <div class="app-metric"><span class="app-metric-val">AOD</span><span class="app-metric-label">Always-on display</span></div>
+                <div class="app-metric"><span class="app-metric-val">100%</span><span class="app-metric-label">Local, no cloud</span></div>
               </div>
               <ul class="tag-row">
                 <li>Kotlin</li><li>Jetpack Compose</li><li>GitHub Actions</li>
@@ -716,12 +754,17 @@ body.modal-locked{overflow:hidden}
             </div>
             <div class="app-body">
               <h3>ScanMate AI Pro</h3>
-              <p class="app-role">Document scanning · OCR</p>
+              <p class="app-role">Document scanning · OCR · AI workspace</p>
+              <div class="app-status-row">
+                <span class="app-status app-status-soon">Coming soon on Play Store</span>
+                <span class="app-status app-status-live">Screenshots available</span>
+              </div>
               <p class="app-desc">
                 A full document scanner with encrypted vault storage —
                 auto-deskew, on-device OCR with paragraph reconstruction,
-                password-protected PDFs, and biometric-locked access,
-                built on a reactive Room/Flow architecture.
+                password-protected PDFs, biometric-locked access, QR/barcode
+                tools, and a Gemini-powered AI workspace for summarizing,
+                translating, and analyzing scanned text.
               </p>
               <div class="app-metrics">
                 <div class="app-metric"><span class="app-metric-val">10/10</span><span class="app-metric-label">Production-ready</span></div>
@@ -755,6 +798,9 @@ body.modal-locked{overflow:hidden}
             <div class="app-body">
               <h3>SpendWise</h3>
               <p class="app-role">AI-powered expense &amp; subscription tracker</p>
+              <div class="app-status-row">
+                <span class="app-status app-status-soon">Coming soon on Play Store</span>
+              </div>
               <p class="app-desc">
                 Tracks spending and recurring subscriptions with receipt OCR
                 and AI-driven categorization, built fully offline-first with
@@ -891,6 +937,9 @@ body.modal-locked{overflow:hidden}
     <div class="modal-icon">VC</div>
     <h3 id="modal-vaultclean-title">VaultClean AI</h3>
     <p class="modal-tagline">Storage-cleaning utility with AI suggestions</p>
+    <div class="app-status-row">
+      <span class="app-status app-status-soon">Coming soon on Play Store</span>
+    </div>
     <div class="modal-body">
       <div class="psr-block psr-problem">
         <p class="psr-label">Problem</p>
@@ -924,6 +973,15 @@ body.modal-locked{overflow:hidden}
     <div class="modal-icon">PM</div>
     <h3 id="modal-powermate-title">PowerMate AI</h3>
     <p class="modal-tagline">Battery &amp; charging diagnostics app</p>
+
+    <div class="screenshot-strip" role="group" aria-label="PowerMate AI screenshots">
+      <img src="screenshots/powermate-1.jpg" alt="PowerMate AI home screen with battery ring meter" loading="lazy">
+      <img src="screenshots/powermate-2.jpg" alt="PowerMate AI charging intelligence screen" loading="lazy">
+      <img src="screenshots/powermate-3.jpg" alt="PowerMate AI live monitor with real-time charging graph" loading="lazy">
+      <img src="screenshots/powermate-4.jpg" alt="PowerMate AI charging history screen" loading="lazy">
+      <img src="screenshots/powermate-5.jpg" alt="PowerMate AI settings and appearance screen" loading="lazy">
+    </div>
+
     <div class="modal-body">
       <div class="psr-block psr-problem">
         <p class="psr-label">Problem</p>
@@ -933,26 +991,29 @@ body.modal-locked{overflow:hidden}
       </div>
       <div class="psr-block psr-solution">
         <p class="psr-label">Solution</p>
-        <p>Built a scoring system that analyzes charge cycles, speed, and
-          behavior into a single health score on a clean, data-driven
-          dashboard. Fixed CI build failures via GitHub Actions, corrected
-          the core scoring formula, and wired CSV export through
-          FileProvider for data portability.</p>
+        <p>Built a full charging command center: a live per-second monitor
+          reading real Android battery sensors, charger/cable/stability
+          scoring, separate care and health scores, an always-on-display
+          mode, and configurable smart alerts for overheating, unstable
+          chargers, and full-charge thresholds — all estimated entirely
+          on-device, no login or cloud sync.</p>
       </div>
       <div class="psr-block psr-result">
         <p class="psr-label">Result</p>
-        <p>A reliable diagnostics app with a working CI/CD pipeline
-          catching build failures before release, plus a full UI/UX polish
-          pass across typography, contrast, and navigation — ready to list
-          for sale as production source code.</p>
+        <p>A genuinely useful diagnostics app people would pay for, not
+          just a percentage readout — backed by a working GitHub Actions
+          CI/CD pipeline and a full UI/UX polish pass across typography,
+          contrast, and navigation.</p>
       </div>
       <ul class="tag-row">
         <li>Kotlin</li><li>Jetpack Compose</li><li>GitHub Actions</li><li>FileProvider</li>
       </ul>
-      <a href="https://github.com/Faizan-ScanMate/PowerMate-AI" target="_blank" rel="noopener" class="modal-link">
-        View source on GitHub
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-      </a>
+      <div class="modal-link-row">
+        <a href="https://github.com/Faizan-ScanMate/PowerMate-AI" target="_blank" rel="noopener" class="modal-link">
+          View source on GitHub
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
     </div>
   </div>
 
@@ -960,7 +1021,19 @@ body.modal-locked{overflow:hidden}
     <button class="modal-close" aria-label="Close dialog">&times;</button>
     <div class="modal-icon">SM</div>
     <h3 id="modal-scanmate-title">ScanMate AI Pro</h3>
-    <p class="modal-tagline">Document scanning with OCR</p>
+    <p class="modal-tagline">Document scanning with OCR &amp; AI workspace</p>
+
+    <div class="app-status-row">
+      <span class="app-status app-status-soon">Coming soon on Play Store</span>
+    </div>
+
+    <div class="screenshot-strip" role="group" aria-label="ScanMate AI Pro screenshots">
+      <img src="screenshots/scanmate-1.jpg" alt="ScanMate AI Pro home screen with quick start capture" loading="lazy">
+      <img src="screenshots/scanmate-2.jpg" alt="ScanMate AI Pro tools screen with scan, OCR and PDF options" loading="lazy">
+      <img src="screenshots/scanmate-3.jpg" alt="ScanMate AI Pro QR and barcode generator" loading="lazy">
+      <img src="screenshots/scanmate-4.jpg" alt="ScanMate AI Pro AI workspace with Gemini-powered document tools" loading="lazy">
+    </div>
+
     <div class="modal-body">
       <div class="psr-block psr-problem">
         <p class="psr-label">Problem</p>
@@ -973,9 +1046,11 @@ body.modal-locked{overflow:hidden}
         <p>Built a full document management system on CameraX and ML Kit:
           real-time edge detection with auto-deskew, on-device OCR with
           paragraph reconstruction, full-text search across every scan,
-          AES-128 password-protected PDF export, and a biometric-locked
-          vault for sensitive documents — all on a reactive Room/Flow
-          architecture that works fully offline.</p>
+          AES-128 password-protected PDF export, QR/barcode generation, and
+          a biometric-locked vault for sensitive documents — all on a
+          reactive Room/Flow architecture that works fully offline. A
+          Gemini-powered AI workspace layers on top for summarizing,
+          translating, and chatting with scanned document text.</p>
       </div>
       <div class="psr-block psr-result">
         <p class="psr-label">Result</p>
@@ -985,7 +1060,7 @@ body.modal-locked{overflow:hidden}
           extraction and automated document quality scoring on capture.</p>
       </div>
       <ul class="tag-row">
-        <li>CameraX</li><li>ML Kit</li><li>Room</li><li>Flow</li><li>iTextG</li><li>Biometrics</li>
+        <li>CameraX</li><li>ML Kit</li><li>Room</li><li>Flow</li><li>iTextG</li><li>Biometrics</li><li>Gemini API</li>
       </ul>
     </div>
   </div>
@@ -995,6 +1070,9 @@ body.modal-locked{overflow:hidden}
     <div class="modal-icon">SW</div>
     <h3 id="modal-spendwise-title">SpendWise</h3>
     <p class="modal-tagline">AI-powered expense &amp; subscription tracker</p>
+    <div class="app-status-row">
+      <span class="app-status app-status-soon">Coming soon on Play Store</span>
+    </div>
     <div class="modal-body">
       <div class="psr-block psr-problem">
         <p class="psr-label">Problem</p>
