@@ -3,6 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0B0E10" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#FAFAF8" media="(prefers-color-scheme: light)">
 <title>Faizan — Android Developer &amp; Full-Stack Engineer</title>
 <meta name="description" content="Faizan builds production-ready Android applications and modern full-stack web software. Kotlin, Jetpack Compose, React, Node.js.">
 <link rel="canonical" href="https://portfolio-seven-opal-80.vercel.app/">
@@ -13,7 +15,11 @@
 <meta property="og:description" content="Production-ready Android apps and full-stack web software.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://portfolio-seven-opal-80.vercel.app/">
-<meta name="twitter:card" content="summary">
+<meta property="og:image" content="https://portfolio-seven-opal-80.vercel.app/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://portfolio-seven-opal-80.vercel.app/og-image.jpg">
 <meta name="twitter:title" content="Faizan — Android Developer & Full-Stack Engineer">
 <meta name="twitter:description" content="Production-ready Android apps and full-stack web software. Kotlin, Jetpack Compose, React, Node.js.">
 
@@ -38,8 +44,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
 
 <style>
 /* ==========================================================
@@ -356,12 +362,17 @@ section{position:relative}
 
 .app-thumb{
   width:150px;height:200px;border-radius:20px;flex-shrink:0;overflow:hidden;
-  border:1px solid var(--line);box-shadow:var(--shadow-2);background:var(--surface-2);
+  border:1px solid var(--line);box-shadow:var(--shadow-2);
+  background:linear-gradient(160deg, var(--surface) 0%, var(--surface-2) 100%);
+  padding:5px;position:relative;
 }
-.app-thumb img{width:100%;height:100%;object-fit:cover;object-position:top center;display:block}
+.app-thumb img{
+  width:100%;height:100%;object-fit:cover;object-position:top center;display:block;
+  border-radius:15px;
+}
 .app-thumb-pending{
   display:flex;align-items:center;justify-content:center;border-style:dashed;
-  background:var(--surface);
+  background:var(--surface);padding:0;
 }
 .app-thumb-pending span{
   font-family:var(--mono);font-size:11.5px;font-weight:700;letter-spacing:.04em;
@@ -664,9 +675,11 @@ body.modal-locked{overflow:hidden}
         </p>
         <p class="about-text">
           Every app on this page — architecture, CI/CD pipeline, release
-          builds, the works — was built entirely on a Samsung Galaxy A06.
-          No laptop, no desktop. If the workflow works under that
-          constraint, it works anywhere.
+          builds, the works — was engineered entirely on a Samsung Galaxy
+          A06. I built and optimized the whole workflow to run seamlessly
+          under real resource constraints, with no desktop or laptop
+          anywhere in the pipeline. If it holds up under that, it holds
+          up anywhere.
         </p>
       </div>
 
@@ -774,7 +787,7 @@ body.modal-locked{overflow:hidden}
         <article class="app-card reveal" data-modal="modal-powermate" tabindex="0" role="button" aria-haspopup="dialog" aria-label="PowerMate AI — view case study">
           <div class="app-card-grid">
             <div class="app-thumb" aria-hidden="true">
-              <img src="screenshots/powermate-1.jpg" alt="" loading="lazy">
+              <img src="screenshots/powermate-1.jpg" alt="" width="720" height="1529" loading="lazy">
             </div>
             <div class="app-body">
               <h3>PowerMate AI</h3>
@@ -806,7 +819,7 @@ body.modal-locked{overflow:hidden}
         <article class="app-card reveal" data-modal="modal-scanmate" tabindex="0" role="button" aria-haspopup="dialog" aria-label="ScanMate AI Pro — view case study">
           <div class="app-card-grid">
             <div class="app-thumb" aria-hidden="true">
-              <img src="screenshots/scanmate-1.jpg" alt="" loading="lazy">
+              <img src="screenshots/scanmate-1.jpg" alt="" width="720" height="1529" loading="lazy">
             </div>
             <div class="app-body">
               <h3>ScanMate AI Pro</h3>
@@ -1023,11 +1036,11 @@ body.modal-locked{overflow:hidden}
     <p class="modal-tagline">Battery &amp; charging diagnostics app</p>
 
     <div class="screenshot-strip" role="group" aria-label="PowerMate AI screenshots">
-      <img src="screenshots/powermate-1.jpg" alt="PowerMate AI home screen with battery ring meter" loading="lazy">
-      <img src="screenshots/powermate-2.jpg" alt="PowerMate AI charging intelligence screen" loading="lazy">
-      <img src="screenshots/powermate-3.jpg" alt="PowerMate AI live monitor with real-time charging graph" loading="lazy">
-      <img src="screenshots/powermate-4.jpg" alt="PowerMate AI charging history screen" loading="lazy">
-      <img src="screenshots/powermate-5.jpg" alt="PowerMate AI settings and appearance screen" loading="lazy">
+      <img src="screenshots/powermate-1.jpg" alt="PowerMate AI home screen with battery ring meter" width="720" height="1529" loading="lazy">
+      <img src="screenshots/powermate-2.jpg" alt="PowerMate AI charging intelligence screen" width="720" height="1529" loading="lazy">
+      <img src="screenshots/powermate-3.jpg" alt="PowerMate AI live monitor with real-time charging graph" width="720" height="1529" loading="lazy">
+      <img src="screenshots/powermate-4.jpg" alt="PowerMate AI charging history screen" width="720" height="1529" loading="lazy">
+      <img src="screenshots/powermate-5.jpg" alt="PowerMate AI settings and appearance screen" width="720" height="1529" loading="lazy">
     </div>
 
     <div class="modal-body">
@@ -1077,10 +1090,10 @@ body.modal-locked{overflow:hidden}
     </div>
 
     <div class="screenshot-strip" role="group" aria-label="ScanMate AI Pro screenshots">
-      <img src="screenshots/scanmate-1.jpg" alt="ScanMate AI Pro home screen with quick start capture" loading="lazy">
-      <img src="screenshots/scanmate-2.jpg" alt="ScanMate AI Pro tools screen with scan, OCR and PDF options" loading="lazy">
-      <img src="screenshots/scanmate-3.jpg" alt="ScanMate AI Pro QR and barcode generator" loading="lazy">
-      <img src="screenshots/scanmate-4.jpg" alt="ScanMate AI Pro AI workspace with Gemini-powered document tools" loading="lazy">
+      <img src="screenshots/scanmate-1.jpg" alt="ScanMate AI Pro home screen with quick start capture" width="720" height="1529" loading="lazy">
+      <img src="screenshots/scanmate-2.jpg" alt="ScanMate AI Pro tools screen with scan, OCR and PDF options" width="720" height="1529" loading="lazy">
+      <img src="screenshots/scanmate-3.jpg" alt="ScanMate AI Pro QR and barcode generator" width="720" height="1529" loading="lazy">
+      <img src="screenshots/scanmate-4.jpg" alt="ScanMate AI Pro AI workspace with Gemini-powered document tools" width="720" height="1529" loading="lazy">
     </div>
 
     <div class="modal-body">
