@@ -438,7 +438,7 @@ section{position:relative}
    MINI PROJECTS
    ========================================================== */
 .projects{padding:100px 0}
-.mini-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.mini-grid{display:grid;grid-template-columns:repeat(auto-fit, minmax(280px, 340px));gap:20px}
 .mini-card{
   background:var(--surface);border:1px solid var(--line);border-radius:var(--r-md);
   padding:28px;cursor:pointer;display:flex;flex-direction:column;
@@ -892,34 +892,13 @@ body.modal-locked{overflow:hidden}
       <h2 class="section-title" id="projects-title">Full-stack &amp; web work.</h2>
 
       <div class="mini-grid">
-        <article class="mini-card reveal" data-modal="modal-signal" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Signal — view details">
-          <div class="mini-icon" aria-hidden="true">SG</div>
-          <h3>Signal</h3>
-          <p>A single-file Gemini-powered chat app — markdown rendering,
-            syntax highlighting, search grounding, full chat management.</p>
-          <ul class="tag-row"><li>JavaScript</li><li>Gemini API</li></ul>
-          <span class="app-expand" aria-hidden="true">Details
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-          </span>
-        </article>
-
-        <article class="mini-card reveal" data-modal="modal-directory" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Chakwal Business Directory — view details">
-          <div class="mini-icon" aria-hidden="true">CB</div>
-          <h3>Business Directory</h3>
-          <p>A multi-business directory platform for local Chakwal
-            businesses, being converted into standalone sites per business.</p>
-          <ul class="tag-row"><li>React</li><li>TypeScript</li></ul>
-          <span class="app-expand" aria-hidden="true">Details
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-          </span>
-        </article>
-
-        <article class="mini-card reveal" data-modal="modal-candlestick" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Candlestick Trading Tool — view details">
-          <div class="mini-icon" aria-hidden="true">CT</div>
-          <h3>Trading Tool</h3>
-          <p>An educational tool explaining candlestick chart patterns,
-            built for a family member learning to trade.</p>
-          <ul class="tag-row"><li>HTML</li><li>JavaScript</li></ul>
+        <article class="mini-card reveal" data-modal="modal-globalglide" tabindex="0" role="button" aria-haspopup="dialog" aria-label="GlobalGlide — view details">
+          <div class="mini-icon" aria-hidden="true">GG</div>
+          <h3>GlobalGlide</h3>
+          <p>A premium travel booking concept — curated destinations,
+            a live currency converter, and a full booking flow, built
+            as a polished front-to-back web experience.</p>
+          <ul class="tag-row"><li>React</li><li>TypeScript</li><li>Tailwind</li></ul>
           <span class="app-expand" aria-hidden="true">Details
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
           </span>
@@ -1164,99 +1143,43 @@ body.modal-locked{overflow:hidden}
     </div>
   </div>
 
-  <div class="modal" id="modal-signal" role="dialog" aria-modal="true" aria-labelledby="modal-signal-title">
+  <div class="modal" id="modal-globalglide" role="dialog" aria-modal="true" aria-labelledby="modal-globalglide-title">
     <button class="modal-close" aria-label="Close dialog">&times;</button>
-    <div class="modal-icon">SG</div>
-    <h3 id="modal-signal-title">Signal</h3>
-    <p class="modal-tagline">Single-file Gemini-powered chat app</p>
+    <div class="modal-icon">GG</div>
+    <h3 id="modal-globalglide-title">GlobalGlide</h3>
+    <p class="modal-tagline">Premium travel booking experience</p>
     <div class="modal-body">
       <div class="psr-block psr-problem">
         <p class="psr-label">Problem</p>
-        <p>Most AI chat interfaces require a framework, a build step, and
-          hosting infrastructure — overkill for a lightweight, personal
-          Gemini API client that just needs to work anywhere.</p>
+        <p>Most travel booking demos are either bare-bones listings or
+          overloaded with features that don't reflect how a real premium
+          travel brand would actually present itself online.</p>
       </div>
       <div class="psr-block psr-solution">
         <p class="psr-label">Solution</p>
-        <p>Built Signal as a single self-contained HTML/CSS/JS file — no
-          framework, no build step. Added markdown rendering via
-          marked.js, syntax highlighting via highlight.js, sanitized
-          output through DOMPurify, Google Search grounding, and
-          temperature controls.</p>
+        <p>Built a full front-to-back travel experience: a curated
+          10-destination grid with ratings and pricing, an animated stats
+          section, a live-style currency converter supporting five
+          currencies, and a working contact/booking form — all in a
+          polished, premium visual style.</p>
       </div>
       <div class="psr-block psr-result">
         <p class="psr-label">Result</p>
-        <p>A fully-featured chat client with per-message edit, regenerate,
-          delete and copy actions, plus chat pinning, sidebar search, and
-          rename — deployable by dropping one file anywhere.</p>
+        <p>A complete, deployable travel platform concept that
+          demonstrates full-stack range beyond utility tools — real
+          UI polish, interactive currency conversion, and a booking flow
+          that feels production-ready.</p>
       </div>
       <p class="tech-stack-label">Tech Stack</p>
       <ul class="tag-row">
-        <li>JavaScript</li><li>Gemini API</li><li>marked.js</li><li>highlight.js</li><li>DOMPurify</li>
+        <li>React</li><li>TypeScript</li><li>Tailwind CSS</li>
       </ul>
-    </div>
-  </div>
-
-  <div class="modal" id="modal-directory" role="dialog" aria-modal="true" aria-labelledby="modal-directory-title">
-    <button class="modal-close" aria-label="Close dialog">&times;</button>
-    <div class="modal-icon">CB</div>
-    <h3 id="modal-directory-title">Chakwal Business Directory</h3>
-    <p class="modal-tagline">Multi-business directory platform</p>
-    <div class="modal-body">
-      <div class="psr-block psr-problem">
-        <p class="psr-label">Problem</p>
-        <p>Local businesses in Chakwal, Pakistan have little to no online
-          presence, and a single shared directory site makes it hard for
-          any one business to hand off, brand, or fully own their page.</p>
+      <div class="modal-link-row">
+        <a href="https://global-glide.vercel.app/" target="_blank" rel="noopener" class="modal-link">
+          View live site
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
       </div>
-      <div class="psr-block psr-solution">
-        <p class="psr-label">Solution</p>
-        <p>Built a multi-business directory as a single React app first,
-          then restructured it to split into 10 separate standalone sites
-          — one per business — so each can be hosted, branded, and handed
-          off independently.</p>
-      </div>
-      <div class="psr-block psr-result">
-        <p class="psr-label">Result</p>
-        <p>Ten deployable, client-ready business websites built from one
-          codebase, positioned to be pitched directly to local business
-          owners.</p>
-      </div>
-      <p class="tech-stack-label">Tech Stack</p>
-      <ul class="tag-row">
-        <li>React</li><li>Vite</li><li>TypeScript</li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="modal" id="modal-candlestick" role="dialog" aria-modal="true" aria-labelledby="modal-candlestick-title">
-    <button class="modal-close" aria-label="Close dialog">&times;</button>
-    <div class="modal-icon">CT</div>
-    <h3 id="modal-candlestick-title">Candlestick Trading Tool</h3>
-    <p class="modal-tagline">Educational HTML tool</p>
-    <div class="modal-body">
-      <div class="psr-block psr-problem">
-        <p class="psr-label">Problem</p>
-        <p>A family member exploring trading on Binance needed to learn
-          candlestick chart patterns, but most explanations online are
-          either too technical or too scattered to actually learn from.</p>
-      </div>
-      <div class="psr-block psr-solution">
-        <p class="psr-label">Solution</p>
-        <p>Built a self-contained educational tool covering common
-          candlestick patterns, with visual examples of each one and
-          plain-language explanations of what they typically signal.</p>
-      </div>
-      <div class="psr-block psr-result">
-        <p class="psr-label">Result</p>
-        <p>A focused, easy-to-follow reference that turned an abstract
-          topic into something a beginner could actually use while
-          reading live charts.</p>
-      </div>
-      <p class="tech-stack-label">Tech Stack</p>
-      <ul class="tag-row">
-        <li>HTML</li><li>CSS</li><li>JavaScript</li>
-      </ul>
     </div>
   </div>
 
