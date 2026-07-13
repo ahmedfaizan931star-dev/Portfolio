@@ -201,6 +201,89 @@ section{position:relative}
 @media (prefers-reduced-motion:reduce){.hero-grid-reveal{display:none}}
 
 /* ==========================================================
+   FLOATING SOCIAL SIDEBAR (desktop)
+   ========================================================== */
+.social-sidebar{
+  position:fixed;left:28px;bottom:0;z-index:40;display:flex;flex-direction:column;
+  align-items:center;gap:18px;opacity:0;pointer-events:none;transition:opacity .5s ease;
+}
+.social-sidebar.visible{opacity:1;pointer-events:auto}
+.social-sidebar a{
+  color:var(--ink-dim);transition:color .2s ease,transform .2s ease;display:flex;
+}
+.social-sidebar a:hover{color:var(--teal);transform:translateY(-3px)}
+.social-sidebar a svg{width:19px;height:19px}
+.social-sidebar-rule{width:1px;height:90px;background:var(--line-soft)}
+@media (max-width:1180px){.social-sidebar{display:none}}
+
+/* ==========================================================
+   TERMINAL-STYLE SECTION MARKER
+   ========================================================== */
+.eyebrow-label.term{position:relative}
+.eyebrow-label.term::before{content:none}
+.eyebrow-label.term::after{
+  content:'';width:6px;height:6px;border-radius:50%;background:var(--teal);
+  box-shadow:0 0 0 3px var(--teal-soft);display:inline-block;
+  animation:termBlink 1.6s ease-in-out infinite;
+}
+@keyframes termBlink{0%,100%{opacity:1}50%{opacity:.35}}
+@media (prefers-reduced-motion:reduce){.eyebrow-label.term::after{animation:none}}
+
+/* ==========================================================
+   FEATURED APP — ScanMate AI Pro
+   ========================================================== */
+.featured-app{
+  position:relative;border-radius:24px;overflow:hidden;margin-bottom:32px;
+  background:linear-gradient(150deg, var(--surface) 0%, var(--surface-2) 100%);
+  border:1px solid var(--teal-dim);box-shadow:var(--glow-teal);cursor:pointer;
+  transition:box-shadow .4s var(--ease),border-color .4s var(--ease);
+}
+.featured-app:hover,.featured-app:focus-visible{box-shadow:var(--shadow-3),var(--glow-teal)}
+.featured-app::after{
+  content:'';position:absolute;inset:0;pointer-events:none;z-index:1;
+  background:radial-gradient(620px circle at var(--gx,50%) var(--gy,50%), rgba(47,224,197,.08), transparent 45%);
+  opacity:0;transition:opacity .35s ease;
+}
+.featured-app:hover::after{opacity:1}
+@media (hover:none){.featured-app::after{display:none}}
+.featured-app-badge{
+  position:absolute;top:24px;left:24px;z-index:2;
+  display:inline-flex;align-items:center;gap:7px;
+  font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--teal-ink);background:var(--teal);padding:6px 13px;border-radius:99px;
+}
+.featured-app-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:0;align-items:stretch}
+.featured-app-shots{
+  position:relative;padding:56px 32px 32px;display:flex;gap:14px;overflow-x:auto;
+  background:radial-gradient(circle at 30% 20%, var(--teal-soft), transparent 60%);
+  scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch;
+}
+.featured-app-shots::-webkit-scrollbar{height:6px}
+.featured-app-shots::-webkit-scrollbar-thumb{background:var(--line);border-radius:99px}
+.featured-app-shots img{
+  height:380px;width:auto;border-radius:18px;flex-shrink:0;scroll-snap-align:start;
+  border:1px solid var(--line);box-shadow:var(--shadow-3);
+}
+.featured-app-body{padding:56px 44px 44px 20px;display:flex;flex-direction:column;justify-content:center}
+.featured-app-body h3{font-family:var(--display);font-size:30px;font-weight:700;margin:0 0 8px}
+.featured-app-role{font-size:14px;color:var(--teal);font-weight:600;margin:0 0 16px;font-family:var(--mono)}
+.featured-app-desc{color:var(--ink-soft);font-size:16px;line-height:1.65;margin:0 0 22px}
+.featured-app-metrics{display:flex;gap:26px;margin-bottom:24px;flex-wrap:wrap}
+.featured-app-cta{
+  display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:14.5px;
+  color:var(--teal);margin-top:6px;width:fit-content;
+}
+.featured-app-cta svg{width:15px;height:15px;transition:transform .2s ease}
+.featured-app:hover .featured-app-cta svg{transform:translateX(4px)}
+
+@media (max-width:900px){
+  .featured-app-grid{grid-template-columns:1fr}
+  .featured-app-shots{padding:64px 20px 20px}
+  .featured-app-shots img{height:280px}
+  .featured-app-body{padding:28px 24px 32px}
+}
+
+/* ==========================================================
    HEADER
    ========================================================== */
 .site-header{
@@ -209,8 +292,9 @@ section{position:relative}
   background:color-mix(in srgb, var(--bg) 80%, transparent);
   backdrop-filter:saturate(180%) blur(14px);
   border-bottom:1px solid var(--line);
-  transition:box-shadow .3s ease,background .4s ease;
+  transition:box-shadow .3s ease,background .4s ease,transform .35s var(--ease-out);
 }
+.site-header.header-hidden{transform:translateY(-100%)}
 .header-inner{display:flex;align-items:center;justify-content:space-between;height:70px}
 .logo{font-family:var(--display);font-weight:700;font-size:18.5px;letter-spacing:-.01em}
 .logo-accent{color:var(--teal)}
@@ -681,6 +765,19 @@ body.modal-locked{overflow:hidden}
   </div>
 </header>
 
+<nav class="social-sidebar" id="socialSidebar" aria-label="Social links">
+  <a href="https://github.com/ahmedfaizan931star-dev" target="_blank" rel="noopener" aria-label="GitHub">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.5 0-.24-.01-1.04-.01-1.89-2.78.62-3.37-1.22-3.37-1.22-.45-1.18-1.11-1.5-1.11-1.5-.9-.64.07-.63.07-.63 1 .07 1.53 1.06 1.53 1.06.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.06 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.31.1-2.73 0 0 .84-.28 2.75 1.05a9.3 9.3 0 0 1 2.5-.35c.85 0 1.71.12 2.5.35 1.91-1.33 2.75-1.05 2.75-1.05.55 1.42.2 2.47.1 2.73.64.72 1.03 1.63 1.03 2.75 0 3.93-2.34 4.8-4.57 5.05.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.6.69.5A10.26 10.26 0 0 0 22 12.25C22 6.58 17.52 2 12 2z"/></svg>
+  </a>
+  <a href="https://www.fiverr.com/users/fiyaz_dev/" target="_blank" rel="noopener" aria-label="Fiverr profile">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 21h8M12 17v4M17 3H7a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2z"/><path d="M9 8h6M9 12h4"/></svg>
+  </a>
+  <a href="https://youtube.com/@SynthByteAI-l5y" target="_blank" rel="noopener" aria-label="YouTube">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23 12s0-3.4-.44-5a2.78 2.78 0 0 0-2-2C18.9 4.5 12 4.5 12 4.5s-6.9 0-8.56.5a2.78 2.78 0 0 0-2 2C1 8.6 1 12 1 12s0 3.4.44 5a2.78 2.78 0 0 0 2 2c1.66.5 8.56.5 8.56.5s6.9 0 8.56-.5a2.78 2.78 0 0 0 2-2C23 15.4 23 12 23 12z"/><path d="M9.75 15.25v-6.5L15.5 12l-5.75 3.25z" fill="var(--bg)"/></svg>
+  </a>
+  <span class="social-sidebar-rule" aria-hidden="true"></span>
+</nav>
+
 <main id="main">
   <div id="top"></div>
 
@@ -719,7 +816,7 @@ body.modal-locked{overflow:hidden}
   <section class="about" id="about" aria-labelledby="about-title">
     <div class="wrap about-grid">
       <div class="about-content reveal">
-        <p class="eyebrow-label">About</p>
+        <p class="eyebrow-label term">About</p>
         <h2 class="section-title" id="about-title">Android-first. Full-stack when the project needs it.</h2>
         <p class="about-text">
           I build for the Play Store and the web. My core focus is native
@@ -813,9 +910,42 @@ body.modal-locked{overflow:hidden}
   <!-- ============ FLAGSHIP APPS ============ -->
   <section class="apps" id="apps" aria-labelledby="apps-title">
     <div class="wrap">
-      <p class="eyebrow-label">Android Apps</p>
+      <p class="eyebrow-label term">Android Apps</p>
       <h2 class="section-title" id="apps-title">Apps I've built end to end.</h2>
-      <p class="section-sub">Native Android, architected and shipped from scratch. Select any app for the full breakdown.</p>
+      <p class="section-sub">Native Android, architected and shipped from scratch. The flagship build first, then the rest of the lineup.</p>
+
+      <article class="featured-app reveal" data-modal="modal-scanmate" tabindex="0" role="button" aria-haspopup="dialog" aria-label="ScanMate AI Pro — featured case study">
+        <span class="featured-app-badge">★ Flagship build</span>
+        <div class="featured-app-grid">
+          <div class="featured-app-shots" role="group" aria-label="ScanMate AI Pro screenshots">
+            <img src="screenshots/scanmate-1.jpg" alt="ScanMate AI Pro home screen with quick start capture" width="720" height="1529" loading="lazy">
+            <img src="screenshots/scanmate-2.jpg" alt="ScanMate AI Pro tools screen with scan, OCR and PDF options" width="720" height="1529" loading="lazy">
+            <img src="screenshots/scanmate-4.jpg" alt="ScanMate AI Pro AI workspace with Gemini-powered document tools" width="720" height="1529" loading="lazy">
+          </div>
+          <div class="featured-app-body">
+            <h3>ScanMate AI Pro</h3>
+            <p class="featured-app-role">Document scanning · OCR · AI workspace</p>
+            <p class="featured-app-desc">
+              A full document management system — real-time edge detection with
+              auto-deskew, on-device OCR with paragraph reconstruction, AES-128
+              password-protected PDF export, biometric-locked vault, and a
+              Gemini-powered AI workspace for summarizing and translating scans.
+              Taken through 15 rounds of production hardening to a 10/10 build.
+            </p>
+            <div class="featured-app-metrics">
+              <div class="app-metric"><span class="app-metric-val">10/10</span><span class="app-metric-label">Production-ready</span></div>
+              <div class="app-metric"><span class="app-metric-val">15</span><span class="app-metric-label">Revision rounds</span></div>
+              <div class="app-metric"><span class="app-metric-val">AES-128</span><span class="app-metric-label">PDF encryption</span></div>
+            </div>
+            <ul class="tag-row">
+              <li>CameraX</li><li>ML Kit</li><li>Room</li><li>Flow</li><li>Biometrics</li><li>Gemini API</li>
+            </ul>
+            <span class="featured-app-cta">Full case study
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </span>
+          </div>
+        </div>
+      </article>
 
       <div class="app-stack">
 
@@ -882,40 +1012,6 @@ body.modal-locked{overflow:hidden}
           </div>
         </article>
 
-        <article class="app-card reveal" data-modal="modal-scanmate" tabindex="0" role="button" aria-haspopup="dialog" aria-label="ScanMate AI Pro — view case study">
-          <div class="app-card-grid">
-            <div class="app-thumb" aria-hidden="true">
-              <img src="screenshots/scanmate-1.jpg" alt="" width="720" height="1529" loading="lazy">
-            </div>
-            <div class="app-body">
-              <h3>ScanMate AI Pro</h3>
-              <p class="app-role">Document scanning · OCR · AI workspace</p>
-              <div class="app-status-row">
-                <span class="app-status app-status-soon">Coming soon on Play Store</span>
-                <span class="app-status app-status-live">Screenshots available</span>
-              </div>
-              <p class="app-desc">
-                A full document scanner with encrypted vault storage —
-                auto-deskew, on-device OCR with paragraph reconstruction,
-                password-protected PDFs, biometric-locked access, QR/barcode
-                tools, and a Gemini-powered AI workspace for summarizing,
-                translating, and analyzing scanned text.
-              </p>
-              <div class="app-metrics">
-                <div class="app-metric"><span class="app-metric-val">10/10</span><span class="app-metric-label">Production-ready</span></div>
-                <div class="app-metric"><span class="app-metric-val">15</span><span class="app-metric-label">Revision rounds</span></div>
-                <div class="app-metric"><span class="app-metric-val">AES-128</span><span class="app-metric-label">PDF encryption</span></div>
-              </div>
-              <ul class="tag-row">
-                <li>CameraX</li><li>ML Kit</li><li>Room</li><li>Flow</li><li>Biometrics</li>
-              </ul>
-            </div>
-            <span class="app-expand" aria-hidden="true">Case study
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-            </span>
-          </div>
-        </article>
-
         <article class="app-card reveal" data-modal="modal-spendwise" tabindex="0" role="button" aria-haspopup="dialog" aria-label="SpendWise — view case study">
           <div class="app-card-grid">
             <div class="app-thumb app-thumb-pending" aria-hidden="true">
@@ -954,7 +1050,7 @@ body.modal-locked{overflow:hidden}
   <!-- ============ MORE PROJECTS ============ -->
   <section class="projects" id="projects" aria-labelledby="projects-title">
     <div class="wrap">
-      <p class="eyebrow-label">More Projects</p>
+      <p class="eyebrow-label term">More Projects</p>
       <h2 class="section-title" id="projects-title">Full-stack &amp; web work.</h2>
 
       <div class="mini-grid">
@@ -976,7 +1072,7 @@ body.modal-locked{overflow:hidden}
   <!-- ============ CONTACT — Fiverr-first ============ -->
   <section class="contact" id="contact" aria-labelledby="contact-title">
     <div class="wrap">
-      <p class="eyebrow-label">Contact</p>
+      <p class="eyebrow-label term">Contact</p>
       <h2 class="section-title" id="contact-title">Let's build something.</h2>
       <p class="section-sub contact-lead">
         Open to freelance projects and full-time opportunities. Fiverr is
@@ -1348,6 +1444,17 @@ document.addEventListener('DOMContentLoaded', () => {
         card.style.transform = '';
       });
     });
+
+    // Featured card: glow tracking only, no tilt (too large for a tilt effect to feel right)
+    document.querySelectorAll('.featured-app').forEach(card => {
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const px = (e.clientX - rect.left) / rect.width;
+        const py = (e.clientY - rect.top) / rect.height;
+        card.style.setProperty('--gx', (px * 100) + '%');
+        card.style.setProperty('--gy', (py * 100) + '%');
+      });
+    });
   }
 
   // ---- Mesh blob parallax on scroll ----
@@ -1396,12 +1503,43 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // ---- Sticky header shadow ----
+  // ---- Sticky header: shadow + hide on scroll down, show on scroll up ----
   const header = document.querySelector('.site-header');
   if (header) {
+    let lastScrollY = window.scrollY;
+    let ticking = false;
     window.addEventListener('scroll', () => {
-      header.style.boxShadow = window.scrollY > 8 ? '0 4px 24px rgba(0,0,0,0.3)' : 'none';
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        const y = window.scrollY;
+        header.style.boxShadow = y > 8 ? '0 4px 24px rgba(0,0,0,0.3)' : 'none';
+        if (y > lastScrollY && y > 140) {
+          header.classList.add('header-hidden');
+        } else {
+          header.classList.remove('header-hidden');
+        }
+        lastScrollY = y;
+        ticking = false;
+      });
     }, { passive: true });
+  }
+
+  // ---- Floating social sidebar: fade in after hero ----
+  const socialSidebar = document.getElementById('socialSidebar');
+  if (socialSidebar) {
+    if ('IntersectionObserver' in window) {
+      const sidebarObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          socialSidebar.classList.toggle('visible', !entry.isIntersecting);
+        });
+      }, { threshold: 0 });
+      const heroEl = document.getElementById('heroSection');
+      if (heroEl) sidebarObserver.observe(heroEl);
+      else socialSidebar.classList.add('visible');
+    } else {
+      socialSidebar.classList.add('visible');
+    }
   }
 
   // ---- Scroll reveal + count-up (GSAP, with plain fallback) ----
