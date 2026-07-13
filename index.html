@@ -378,6 +378,45 @@ section{position:relative}
 
 .hero-rule{border-top:1px solid var(--line);padding-top:40px}
 .hero-stats{display:flex;gap:56px;flex-wrap:wrap}
+
+/* ==========================================================
+   HERO TERMINAL STATS
+   ========================================================== */
+.hero-terminal{
+  margin-top:64px;max-width:560px;border-radius:var(--r-md);overflow:hidden;
+  background:var(--surface);border:1px solid var(--line);box-shadow:var(--shadow-2);
+  opacity:0;transform:translateY(16px);
+}
+.no-js .hero-terminal{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.hero-terminal{opacity:1;transform:none}}
+.hero-terminal-bar{
+  display:flex;align-items:center;gap:7px;padding:11px 14px;
+  background:var(--surface-2);border-bottom:1px solid var(--line);
+  overflow:hidden;
+}
+.hero-terminal-dot{width:9px;height:9px;border-radius:50%;flex-shrink:0}
+.hero-terminal-dot.red{background:#FF5F56}
+.hero-terminal-dot.yellow{background:#FFBD2E}
+.hero-terminal-dot.green{background:#27C93F}
+.hero-terminal-title{
+  margin-left:8px;font-family:var(--mono);font-size:11px;color:var(--ink-dim);
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0;
+}
+.hero-terminal-body{padding:18px 20px 20px;font-family:var(--mono);font-size:13.5px;line-height:1.9}
+.hero-terminal-cmd{color:var(--ink)}
+.hero-terminal-cmd .prompt{color:var(--teal);margin-right:8px}
+.hero-terminal-out{color:var(--ink-soft);padding-left:20px;opacity:0}
+.hero-terminal-out .k{color:var(--ink-dim)}
+.hero-terminal-out .v{color:var(--ink);font-weight:600}
+.hero-terminal-out .v.accent{color:var(--teal)}
+.hero-terminal-cursor-line{color:var(--ink-soft);padding-left:20px;opacity:0}
+.hero-terminal-cursor-line .prompt{color:var(--teal);margin-right:8px}
+.hero-terminal-cursor-line .blink{animation:blinkCursor 1s step-end infinite}
+@media (max-width:640px){
+  .hero-terminal{margin-top:44px}
+  .hero-terminal-body{font-size:12px;padding:16px}
+  .hero-terminal-out,.hero-terminal-cursor-line{padding-left:14px}
+}
 .stat{display:flex;flex-direction:column;gap:6px}
 .stat-num{
   font-family:var(--display);font-size:36px;font-weight:700;
@@ -809,6 +848,23 @@ body.modal-locked{overflow:hidden}
       <a href="#contact" class="btn btn-ghost">Start a project</a>
     </div>
 
+    <div class="hero-terminal" id="heroTerminal">
+      <div class="hero-terminal-bar" aria-hidden="true">
+        <span class="hero-terminal-dot red"></span>
+        <span class="hero-terminal-dot yellow"></span>
+        <span class="hero-terminal-dot green"></span>
+        <span class="hero-terminal-title">ahmedfaizan931start@gmail.com — zsh</span>
+      </div>
+      <div class="hero-terminal-body">
+        <p class="hero-terminal-cmd"><span class="prompt" aria-hidden="true">$</span>whoami --stats</p>
+        <p class="hero-terminal-out" data-line="1"><span class="k">apps_shipped</span> → <span class="v accent" data-count-to="4">0</span></p>
+        <p class="hero-terminal-out" data-line="2"><span class="k">kotlin_files_audited</span> → <span class="v" data-count-to="49">0</span></p>
+        <p class="hero-terminal-out" data-line="3"><span class="k">scanmate_revision_rounds</span> → <span class="v" data-count-to="15">0</span></p>
+        <p class="hero-terminal-out" data-line="4"><span class="k">stack_focus</span> → <span class="v accent">Android + Full-stack</span></p>
+        <p class="hero-terminal-cursor-line" data-line="5" aria-hidden="true"><span class="prompt">$</span><span class="blink">|</span></p>
+      </div>
+    </div>
+
     </div>
   </section>
 
@@ -838,8 +894,8 @@ body.modal-locked{overflow:hidden}
         </p>
         <p class="about-text">
           Every app on this page — architecture, CI/CD pipeline, release
-          builds, the works — was engineered entirely on a Samsung Galaxy
-          A06. I built and optimized the whole workflow to run seamlessly
+          builds, the works — was engineered entirely on a mobile device.
+          I built and optimized the whole workflow to run seamlessly
           under real resource constraints, with no desktop or laptop
           anywhere in the pipeline. If it holds up under that, it holds
           up anywhere.
@@ -1392,6 +1448,37 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ---- Hero entrance timeline ----
+  function startTerminal() {
+    const terminal = document.getElementById('heroTerminal');
+    if (!terminal) return;
+    const outLines = terminal.querySelectorAll('.hero-terminal-out, .hero-terminal-cursor-line');
+
+    if (prefersReducedMotion || !gsapReady) {
+      terminal.style.opacity = '1';
+      terminal.style.transform = 'none';
+      outLines.forEach(l => l.style.opacity = '1');
+      terminal.querySelectorAll('[data-count-to]').forEach(el => {
+        el.textContent = el.dataset.countTo;
+      });
+      return;
+    }
+
+    gsap.to(terminal, { opacity: 1, y: 0, duration: 0.5, ease: 'power2.out' });
+
+    const tl = gsap.timeline({ delay: 0.15 });
+    outLines.forEach((line, i) => {
+      tl.to(line, { opacity: 1, duration: 0.35 }, i * 0.35);
+      const counter = line.querySelector('[data-count-to]');
+      if (counter) {
+        const target = parseInt(counter.dataset.countTo, 10);
+        tl.to({ val: 0 }, {
+          val: target, duration: 0.5, ease: 'power1.out',
+          onUpdate: function () { counter.textContent = Math.round(this.targets()[0].val); }
+        }, i * 0.35);
+      }
+    });
+  }
+
   if (gsapReady && !prefersReducedMotion) {
     const lineInners = document.querySelectorAll('#heroTitle .line-inner');
     const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
@@ -1401,7 +1488,8 @@ document.addEventListener('DOMContentLoaded', () => {
       .to('#heroTyping', { opacity: 1, duration: 0.5 }, 0.1)
       .to('#heroSub', { opacity: 1, y: 0, duration: 0.6 }, '-=0.55')
       .to('#heroActions', { opacity: 1, y: 0, duration: 0.6 }, '-=0.45')
-      .call(() => startTyping(), null, '-=0.2');
+      .call(() => startTyping(), null, '-=0.2')
+      .call(() => startTerminal(), null, '+=0.3');
   } else {
     // GSAP unavailable or reduced motion — reveal instantly, no animation
     document.querySelectorAll('#heroTitle .line-inner').forEach(el => el.style.transform = 'none');
@@ -1410,6 +1498,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (el) { el.style.opacity = '1'; el.style.transform = 'none'; }
     });
     startTyping();
+    startTerminal();
   }
 
   // ---- Cursor-revealed grid in hero (desktop hover only) ----
